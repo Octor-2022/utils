@@ -27,7 +27,8 @@ const statusUser = mongoose.model('statusUser', new mongoose.Schema({
     username: { type: String, },
     password: { type: String },
     token: { type: String },
-    id: { type: String }
+    id: { type: String },
+    statusIDs: { type: Array }
 }, {collation: { locale: 'en_US', strength: 1 }, collection: "users"}));
 
 const statusIncidents = mongoose.model('statusIncidents', new mongoose.Schema({
