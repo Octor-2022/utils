@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const statusPageHosts = mongoose.model('statusPageHosts', new mongoose.Schema({
     statusID: { type: String, },
+    statusName: { type: String },
     hostUID: { type: String },
     host: { type: String },
     displayName: { type: String },
