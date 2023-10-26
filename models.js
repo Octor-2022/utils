@@ -51,6 +51,5 @@ module.exports = {
     statusPageHostInfo,
     statusUser,
     statusIncidents,
-    statusPageHostExtra,
     login
 }
