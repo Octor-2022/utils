@@ -5,16 +5,10 @@ const statusPageHosts = mongoose.model('statusPageHosts', new mongoose.Schema({
     hostUID: { type: String },
     host: { type: String },
     displayName: { type: String },
-    group: { type: String }
+    group: { type: String },
+    userID: { type: String }
 }, {collation: { locale: 'en_US', strength: 1 }, collection: "hosts"}));
 
-const statusPageHostExtra = mongoose.model('statusPageHostExtra', new mongoose.Schema({
-    statusID: { type: String, },
-    hostUID: { type: String },
-    host: { type: String },
-    displayName: { type: String },
-    group: { type: String }
-}, {collation: { locale: 'en_US', strength: 1 }, collection: "hostsExtra"}));
 
 const statusPageHostInfo = mongoose.model('statusPageHostInfo', new mongoose.Schema({
     statusID: { type: String, },
