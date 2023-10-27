@@ -42,7 +42,11 @@ async function login(uri) {
         mongoose.connect(uri, {
             useNewUrlParser: true,
             useUnifiedTopology: true
-        }).then(() => resolve);
+        }).then(() => {
+            return resolve()
+        }).catch((r)=>{
+            return reject(r)
+        })
     })
 }
 
