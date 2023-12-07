@@ -7,7 +7,7 @@ const statusPageHosts = mongoose.model('statusPageHosts', new mongoose.Schema({
     host: { type: String },
     displayName: { type: String },
     userID: { type: String },
-    // showIP: { type: Boolean },
+    showIP: { type: Boolean },
 }, {collation: { locale: 'en_US', strength: 1 }, collection: "hosts"}));
 
 const statusPageHostData = mongoose.model('statusPageHostData', new mongoose.Schema({
@@ -45,7 +45,7 @@ const statusGroupInfo = mongoose.model('statusGroupInfo', new mongoose.Schema({
     channelID: { type: String },
     guildID: { type: String },
     messageID: { type: String }
-}, {collation: { locale: 'en_US', strength: 1 }, collection: "incidents"}));
+}, {collation: { locale: 'en_US', strength: 1 }, collection: "gc-data"}));
 
 async function login(uri) {
     return new Promise((resolve, reject) => {
