@@ -1,18 +1,16 @@
 const mongoose = require('mongoose');
 
 const statusPageHosts = mongoose.model('statusPageHosts', new mongoose.Schema({
-    statusID: { type: String, },
-    statusName: { type: String },
-    groupID: { type: String },
-    host: { type: String },
     displayName: { type: String },
-    userID: { type: String },
+    host: { type: String },
     showIP: { type: Boolean },
+    statusID: { type: String },
+    groupID: { type: String },
+    type: { type: Number }
 }, {collation: { locale: 'en_US', strength: 1 }, collection: "hosts"}));
 
 const statusPageHostData = mongoose.model('statusPageHostData', new mongoose.Schema({
-    statusID: { type: String, },
-    groupID: { type: String },
+    statusID: { type: String },
     date: { type: String },
     data: { type: Array }
 }, {collation: { locale: 'en_US', strength: 1 }, collection: "data"}));
@@ -29,7 +27,6 @@ const statusUser = mongoose.model('statusUser', new mongoose.Schema({
 
 const statusIncidents = mongoose.model('statusIncidents', new mongoose.Schema({
     statusID: { type: String, },
-    groupID: { type: String },
     incidentID: { type: String },
     date: { type: String },
     title: { type: String, },
@@ -39,7 +36,6 @@ const statusIncidents = mongoose.model('statusIncidents', new mongoose.Schema({
 }, {collation: { locale: 'en_US', strength: 1 }, collection: "incidents"}));
 
 const statusGroupInfo = mongoose.model('statusGroupInfo', new mongoose.Schema({
-    statusIDs: { type: Array, },
     groupID: { type: String },
     groupName: { type: String },
     channelID: { type: String },
