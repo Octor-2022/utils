@@ -40,7 +40,8 @@ const statusGroupInfo = mongoose.model('statusGroupInfo', new mongoose.Schema({
     groupName: { type: String },
     channelID: { type: String },
     guildID: { type: String },
-    messageID: { type: String }
+    messageID: { type: String },
+    roleID: { type: String }
 }, {collation: { locale: 'en_US', strength: 1 }, collection: "gc-data"}));
 
 async function login(uri) {
