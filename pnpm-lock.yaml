@@ -11,6 +11,9 @@ dependencies:
   ping:
     specifier: ^0.4.4
     version: 0.4.4
+  pingman:
+    specifier: ^2.0.0
+    version: 2.0.0
 
 packages:
 
@@ -151,6 +154,11 @@ packages:
   /ping@0.4.4:
     resolution: {integrity: sha512-56ZMC0j7SCsMMLdOoUg12VZCfj/+ZO+yfOSjaNCRrmZZr6GLbN2X/Ui56T15dI8NhiHckaw5X2pvyfAomanwqQ==}
     engines: {node: '>=4.0.0'}
+    dev: false
+
+  /pingman@2.0.0:
+    resolution: {integrity: sha512-7v2e+nk8LH8nTbzn71T/Et8Oxbmi/1lTQQHk9vy+FKM6Tu7bKnDa48vdDu4CeOGWYlwtbv0ZasFVsij8rTjkBw==}
+    engines: {node: '>=10'}
     dev: false
 
   /punycode@2.3.0:

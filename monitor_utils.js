@@ -1,6 +1,6 @@
 const http = require("http")
 const https = require("https")
-const ping = require("ping")
+const ping = require("pingman")
 const urlMod = require("url")
 
 /**
@@ -54,11 +54,12 @@ async function ipandPort(url) {
 }
 
 async function pingIP(ip) {
-    return new Promise((resolve, reject) => {
-        ping.sys.probe(ip, (isAlive, err) => {
-            if (err) console.log(err)
-            resolve(isAlive)
-        })
+    return new Promise(async (resolve, reject) => {
+        try {
+            const response = await ping(ip);
+            resolve(response.alive) // TODO: Return the time
+        } catch (e) {
+        }
     })
 }
 
