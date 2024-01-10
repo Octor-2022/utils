@@ -13,5 +13,6 @@ let token = function(length = 2) {
 module.exports = {
     token,
     rand,
-    models: require("./models")
+    models: require("./models"),
+    monitor: require("./monitor_utils")
 }
