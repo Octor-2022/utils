@@ -46,10 +46,7 @@ const statusGroupInfo = mongoose.model('statusGroupInfo', new mongoose.Schema({
 
 async function login(uri) {
     return new Promise((resolve, reject) => {
-        mongoose.connect(uri, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        }).then(() => {
+        mongoose.connect(uri).then(() => {
             return resolve()
         }).catch((r)=>{
             return reject(r)
