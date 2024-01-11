@@ -11,7 +11,7 @@ const statusPageHostsSchema = new mongoose.Schema({
     type: { type: Number }
 }, { ...commonSchemaOptions, collection: "hosts" });
 
-const statusPageHosts = mongoose.model('statusPageHosts', statusPageHosts);
+const statusPageHosts = mongoose.model('statusPageHosts', statusPageHostsSchema);
 
 const statusPageHostDataSchema = new mongoose.Schema({
     statusID: { type: String },
