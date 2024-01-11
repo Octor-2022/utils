@@ -1,58 +1,78 @@
 const mongoose = require('mongoose');
 
-const statusPageHosts = mongoose.model('statusPageHosts', new mongoose.Schema({
+const commonSchemaOptions = { collation: { locale: 'en_US', strength: 1 } };
+
+const statusPageHostsSchema = new mongoose.Schema({
     displayName: { type: String },
     host: { type: String },
     showIP: { type: Boolean },
     statusID: { type: String },
     groupID: { type: String },
     type: { type: Number }
-}, {collation: { locale: 'en_US', strength: 1 }, collection: "hosts"}));
+}, { ...commonSchemaOptions, collection: "hosts" });
 
-const statusPageHostData = mongoose.model('statusPageHostData', new mongoose.Schema({
+const statusPageHosts = mongoose.model('statusPageHosts', statusPageHosts);
+
+const statusPageHostDataSchema = new mongoose.Schema({
     statusID: { type: String },
     date: { type: String },
     data: { type: Array }
-}, {collation: { locale: 'en_US', strength: 1 }, collection: "data"}));
+}, { ...commonSchemaOptions, collection: "data" });
+
+const statusPageHostData = mongoose.model('statusPageHostData', statusPageHostDataSchema);
 
 // TODO: We might remove this
-const statusUser = mongoose.model('statusUser', new mongoose.Schema({
-    username: { type: String, },
+const statusUserSchema = new mongoose.Schema({
+    username: { type: String },
     password: { type: String },
     token: { type: String },
     id: { type: String },
     statusIDs: { type: Array },
     groupIDs: { type: Array }
-}, {collation: { locale: 'en_US', strength: 1 }, collection: "users"}));
+}, { ...commonSchemaOptions, collection: "users" });
 
-const statusIncidents = mongoose.model('statusIncidents', new mongoose.Schema({
-    statusID: { type: String, },
+const statusUser = mongoose.model('statusUser', statusUserSchema);
+
+const statusIncidentsSchema = new mongoose.Schema({
+    statusID: { type: String },
     incidentID: { type: String },
     date: { type: String },
-    title: { type: String, },
+    title: { type: String },
     description: { type: String },
     ETA: { type: String },
     reportedBy: { type: String }
-}, {collation: { locale: 'en_US', strength: 1 }, collection: "incidents"}));
+}, { ...commonSchemaOptions, collection: "incidents" });
 
-const statusGroupInfo = mongoose.model('statusGroupInfo', new mongoose.Schema({
+const statusIncidents = mongoose.model('statusIncidents', statusIncidentsSchema);
+
+const statusGroupInfoSchema = new mongoose.Schema({
     groupID: { type: String },
     groupName: { type: String },
     channelID: { type: String },
     guildID: { type: String },
     messageID: { type: String },
     roleID: { type: String }
-}, {collation: { locale: 'en_US', strength: 1 }, collection: "gc-data"}));
+}, { ...commonSchemaOptions, collection: "gc-data" });
+
+const statusGroupInfo = mongoose.model('statusGroupInfo', statusGroupInfoSchema);
 
 async function login(uri) {
     return new Promise((resolve, reject) => {
         mongoose.connect(uri).then(() => {
-            return resolve()
-        }).catch((r)=>{
-            return reject(r)
-        })
-    })
+            return resolve();
+        }).catch((r) => {
+            return reject(r);
+        });
+    });
 }
+
+const schemas = {
+    statusPageHosts: statusPageHostsSchema,
+    statusPageHostData: statusPageHostDataSchema,
+    statusUser: statusUserSchema,
+    statusIncidents: statusIncidentsSchema,
+    statusGroupInfo: statusGroupInfoSchema,
+};
 
 module.exports = {
     mongoose,
@@ -61,5 +81,6 @@ module.exports = {
     statusUser,
     statusIncidents,
     statusGroupInfo,
-    login
-}
+    login,
+    schemas,
+};
