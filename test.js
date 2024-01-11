@@ -1,4 +1,4 @@
 const utils = require("./index")
-utils.monitor.pingIP("192.168.4.100").then((e)=>{
+utils.monitor.pingIP("1.1.1.1").then((e)=>{
     console.log(e)
 })
