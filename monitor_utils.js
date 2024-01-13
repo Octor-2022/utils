@@ -265,14 +265,14 @@ async function padData(statusDatas, _endTime = null) {
     let biggest = _endTime?.split(":") ?? biggestTime.split(":")
     let [endHour, endMinute] = biggest
 
+    let toAdd = [{ ok: "?", time: null, latency: "?" }]
+
     Object.values(statusDatas).forEach((v) => {
         /**
          * @type {Array}
          */
         let added = v?.data
         if (!added) return
-
-        let toAdd = []
 
         for (let hour = startHour; hour <= endHour; hour++) {
             for (let minute = startMinute; minute <= endMinute; minute++) {
@@ -284,12 +284,29 @@ async function padData(statusDatas, _endTime = null) {
         }
 
         added.push(...toAdd)
-        added.sort((a, b) => a.time.localeCompare(b.time))
 
         console.log(added)
     })
-    return statusDatas
-}
+
+    let imLazy = []
+
+    for (let data of toAdd) {
+        const otherDatas = toAdd.filter((v)=>v.time == data.time)
+        if (otherDatas.length <= 1) {
+            imLazy.push(otherDatas[0])
+            continue
+        }
+        let timeValues = toAdd.filter((v) => v.time != "?")
+        if (timeValues.length <= 1) {
+            imLazy.push(otherDatas[0])
+            continue
+        }
+        console.log("what the hell???")
+    }
+
+    imLazy.sort((a, b) => a.time.localeCompare(b.time))
+    return imLazy
+}d
 
 /**
  * 
