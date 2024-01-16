@@ -8,7 +8,8 @@ const statusPageHostsSchema = new mongoose.Schema({
     showIP: { type: Boolean },
     statusID: { type: String },
     groupID: { type: String },
-    type: { type: Number }
+    type: { type: Number },
+    guildID: { type: String }
 }, { ...commonSchemaOptions, collection: "hosts" });
 
 const statusPageHosts = mongoose.model('statusPageHosts', statusPageHostsSchema);
