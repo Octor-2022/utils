@@ -306,7 +306,7 @@ async function padData(statusDatas, _endTime = null) {
 
     imLazy.sort((a, b) => a.time.localeCompare(b.time))
     return imLazy
-}d
+}
 
 /**
  * 
